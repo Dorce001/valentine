@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 💖</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 400px;
+      position: relative;
+    }
+
+    img {
+      width: 180px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #adb5bd;
+      color: white;
+      position: absolute;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img src="https://i.imgur.com/6XK6wYF.png" alt="Cute Love">
+    <h1>💖 My TIMEZA d’amour 💖</h1>
+    <p>Will you be my Valentine?</p>
+
+    <button id="yesBtn" onclick="sayYes()">YES 💘</button>
+    <button id="noBtn" onmouseover="moveNo()">NO 😢</button>
+
+    <p id="message"></p>
+  </div>
+
+<script>
+  let noCount = 0;
+  const messages = [
+    "Are you sure? 🥺",
+    "Try again 😏",
+    "Nope… wrong choice 😂",
+    "TIMEZA… come on now 💖",
+    "Okay okay… enough playing 😈"
+  ];
+
+  function moveNo() {
+    const btn = document.getElementById("noBtn");
+    noCount++;
+
+    btn.style.top = Math.random() * 250 + "px";
+    btn.style.left = Math.random() * 250 + "px";
+
+    document.getElementById("message").innerText =
+      messages[Math.min(noCount - 1, messages.length - 1)];
+
+    if (noCount >= 5) {
+      btn.classList.add("hidden");
+      document.getElementById("message").innerText =
+        "There is only one correct answer now 😌💘";
+    }
+  }
+
+  function sayYes() {
+    document.body.innerHTML = `
+      <div style="
+        text-align:center;
+        font-family:'Comic Sans MS', cursive;
+        background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;">
+        <h1 style="color:#ff4d6d;">YAAAY 💖💖💖</h1>
+        <p style="font-size:22px;">
+          I knew it 😍<br><br>
+          You just made me the happiest person alive 💘<br>
+          I love you, my TIMEZA d’amour ❤️
+        </p>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
