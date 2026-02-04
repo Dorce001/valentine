@@ -104,22 +104,38 @@
     }
   }
 
+  <script>
   function sayYes() {
     document.body.innerHTML = `
       <div style="
-        text-align:center;
-        font-family:'Comic Sans MS', cursive;
-        background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-        height:100vh;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;">
-        <h1 style="color:#ff4d6d;">YAAAY 💖💖💖</h1>
-        <p style="font-size:22px;">
+        text-align: center;
+        font-family: 'Poppins', Arial, sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      ">
+        <h1 style="
+          color: #e63946;
+          font-size: 34px;
+          margin-bottom: 20px;
+        ">
+          YAAAY 💖💖💖
+        </h1>
+
+        <p style="
+          font-size: 22px;
+          color: #333;
+          max-width: 420px;
+          line-height: 1.6;
+        ">
           I knew it 😍<br><br>
-          You just made me the happiest person alive 💘<br>
-          I love you, my TIMEZA d’amour ❤️
+          You just made me the happiest person alive 💘<br><br>
+          I love you,<br>
+          <strong>my TIMEZA d’amour ❤️</strong>
         </p>
       </div>
     `;
