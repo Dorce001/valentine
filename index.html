@@ -84,12 +84,21 @@
 
 <script>
   let noCount = 0;
-  const messages = [
+  let yesCount = 0;
+
+  const noMessages = [
     "Are you sure? 🥺",
     "Try again 😏",
     "Nope… wrong choice 😂",
     "TIMEZA… come on now 💖",
     "Okay okay… enough playing 😈"
+  ];
+
+  const yesMessages = [
+    "Aww you clicked YES 💖",
+    "Yay! I knew you would 💘",
+    "You’re making me so happy 😍",
+    "Almost there… keep clicking 💓"
   ];
 
   function moveNo() {
@@ -98,16 +107,15 @@
 
     const container = document.querySelector('.button-container');
     const maxX = container.offsetWidth - btn.offsetWidth;
-    const maxY = 100; // small vertical shift for fun
+    const maxY = 100;
 
-    // Random small movement around YES button
     const newX = Math.random() * maxX;
     const newY = Math.random() * maxY;
 
     btn.style.transform = `translate(${newX}px, ${newY}px)`;
 
     document.getElementById("message").innerText =
-      messages[Math.min(noCount - 1, messages.length - 1)];
+      noMessages[Math.min(noCount - 1, noMessages.length - 1)];
 
     if (noCount >= 5) {
       btn.classList.add("hidden");
@@ -117,39 +125,46 @@
   }
 
   function sayYes() {
-    document.body.innerHTML = `
-      <div style="
-        text-align: center;
-        font-family: 'Poppins', Arial, sans-serif;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-      ">
-        <h1 style="
-          color: #e63946;
-          font-size: 34px;
-          margin-bottom: 20px;
-        ">
-          YAAAY 💖💖💖
-        </h1>
+    yesCount++;
 
-        <p style="
-          font-size: 22px;
-          color: #333;
-          max-width: 420px;
-          line-height: 1.6;
+    if (yesCount < yesMessages.length + 1) {
+      document.getElementById("message").innerText = yesMessages[yesCount - 1];
+    } else {
+      // Final YES message
+      document.body.innerHTML = `
+        <div style="
+          text-align: center;
+          font-family: 'Poppins', Arial, sans-serif;
+          background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
         ">
-          I knew it 😍<br><br>
-          You just made me the happiest person alive 💘<br><br>
-          I love you,<br>
-          <strong>my TIMEZA d’amour ❤️</strong>
-        </p>
-      </div>
-    `;
+          <h1 style="
+            color: #e63946;
+            font-size: 34px;
+            margin-bottom: 20px;
+          ">
+            YAAAY 💖💖💖
+          </h1>
+
+          <p style="
+            font-size: 22px;
+            color: #333;
+            max-width: 420px;
+            line-height: 1.6;
+          ">
+            I knew it 😍<br><br>
+            You just made me the happiest person alive 💘<br><br>
+            I love you,<br>
+            <strong>my TIMEZA d’amour ❤️</strong>
+          </p>
+        </div>
+      `;
+    }
   }
 </script>
 
