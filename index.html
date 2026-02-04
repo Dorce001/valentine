@@ -22,31 +22,30 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       max-width: 400px;
       position: relative;
+      overflow: hidden;
     }
 
     img {
       width: 180px;
     }
 
-  p {
-  font-size: 20px;
-  color: #333;
-  line-height: 1.5;
-}
-
     p {
       font-size: 18px;
+      color: #333;
+      line-height: 1.5;
     }
 
-    button button {
-  padding: 14px 28px;
-  font-size: 18px;
-  font-weight: 600;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  margin: 12px;
-}
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      margin: 12px;
+      position: relative;
+      transition: all 0.3s ease; /* smooth animation */
+    }
 
     #yesBtn {
       background-color: #ff4d6d;
@@ -57,6 +56,8 @@
       background-color: #adb5bd;
       color: white;
       position: absolute;
+      top: 120px; /* initial position */
+      left: 150px; /* initial position */
     }
 
     .hidden {
@@ -67,7 +68,7 @@
 <body>
 
   <div class="card">
-   <img src="minion.gif" alt="My Minion Love">
+    <img src="minion.gif" alt="My Minion Love">
     <h1>💖 My TIMEZA d’amour 💖</h1>
     <p>Will you be my Valentine?</p>
 
@@ -91,8 +92,17 @@
     const btn = document.getElementById("noBtn");
     noCount++;
 
-    btn.style.top = Math.random() * 250 + "px";
-    btn.style.left = Math.random() * 250 + "px";
+    const card = document.querySelector('.card');
+    const maxX = card.offsetWidth - btn.offsetWidth;
+    const maxY = card.offsetHeight - btn.offsetHeight;
+
+    // Random new position within card
+    const newX = Math.random() * maxX;
+    const newY = Math.random() * maxY;
+
+    // Animate movement
+    btn.style.left = newX + "px";
+    btn.style.top = newY + "px";
 
     document.getElementById("message").innerText =
       messages[Math.min(noCount - 1, messages.length - 1)];
@@ -102,7 +112,8 @@
       document.getElementById("message").innerText =
         "There is only one correct answer now 😌💘";
     }
- <script>
+  }
+
   function sayYes() {
     document.body.innerHTML = `
       <div style="
@@ -139,7 +150,6 @@
     `;
   }
 </script>
-
 
 </body>
 </html>
