@@ -22,7 +22,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       max-width: 400px;
       position: relative;
-      overflow: hidden;
     }
 
     img {
@@ -35,6 +34,12 @@
       line-height: 1.5;
     }
 
+    .button-container {
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
     button {
       padding: 14px 28px;
       font-size: 18px;
@@ -42,9 +47,9 @@
       border: none;
       border-radius: 14px;
       cursor: pointer;
-      margin: 12px;
+      margin: 0 10px;
+      transition: all 0.3s ease;
       position: relative;
-      transition: all 0.3s ease; /* smooth animation */
     }
 
     #yesBtn {
@@ -55,9 +60,6 @@
     #noBtn {
       background-color: #adb5bd;
       color: white;
-      position: absolute;
-      top: 120px; /* initial position */
-      left: 150px; /* initial position */
     }
 
     .hidden {
@@ -72,8 +74,10 @@
     <h1>💖 My TIMEZA d’amour 💖</h1>
     <p>Will you be my Valentine?</p>
 
-    <button id="yesBtn" onclick="sayYes()">YES 💘</button>
-    <button id="noBtn" onmouseover="moveNo()">NO 😢</button>
+    <div class="button-container">
+      <button id="yesBtn" onclick="sayYes()">YES 💘</button>
+      <button id="noBtn" onclick="moveNo()">NO 😢</button>
+    </div>
 
     <p id="message"></p>
   </div>
@@ -92,17 +96,15 @@
     const btn = document.getElementById("noBtn");
     noCount++;
 
-    const card = document.querySelector('.card');
-    const maxX = card.offsetWidth - btn.offsetWidth;
-    const maxY = card.offsetHeight - btn.offsetHeight;
+    const container = document.querySelector('.button-container');
+    const maxX = container.offsetWidth - btn.offsetWidth;
+    const maxY = 100; // small vertical shift for fun
 
-    // Random new position within card
+    // Random small movement around YES button
     const newX = Math.random() * maxX;
     const newY = Math.random() * maxY;
 
-    // Animate movement
-    btn.style.left = newX + "px";
-    btn.style.top = newY + "px";
+    btn.style.transform = `translate(${newX}px, ${newY}px)`;
 
     document.getElementById("message").innerText =
       messages[Math.min(noCount - 1, messages.length - 1)];
