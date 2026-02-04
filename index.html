@@ -95,10 +95,9 @@
   ];
 
   const yesMessages = [
-    "Aww you clicked YES 💖",
-    "Yay! I knew you would 💘",
-    "You’re making me so happy 😍",
-    "Almost there… keep clicking 💓"
+    "Aww you clicked YES 💖 Keep clicking, you’re making me so happy 😍",
+    "Yay! I knew you would 💘 Keep going… 💓",
+    "You’re amazing! 💖 Almost there… 💓"
   ];
 
   function moveNo() {
@@ -127,7 +126,8 @@
   function sayYes() {
     yesCount++;
 
-    if (yesCount < yesMessages.length + 1) {
+    if (yesCount <= yesMessages.length) {
+      // Show the playful sweet message for first few clicks
       document.getElementById("message").innerText = yesMessages[yesCount - 1];
     } else {
       // Final YES message
